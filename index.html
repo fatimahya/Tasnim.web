@@ -1,0 +1,202 @@
+<html><head><base href="index.html">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نشریه تسنیم</title>
+<style>
+  @font-face {
+    font-family: 'Vazir';
+    src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/Vazir-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+  body {
+    font-family: 'Vazir', Arial, sans-serif;
+    background-color: #F5E6D3;
+    color: #4A3728;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    direction: rtl;
+  }
+  header {
+    background-color: #8E6C56;
+    padding: 1rem;
+    text-align: center;
+  }
+  nav {
+    background-color: #D4A390;
+    padding: 0.5rem;
+  }
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+  }
+  nav ul li {
+    margin: 0 1rem;
+  }
+  nav ul li a {
+    color: #4A3728;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  h1, h2 {
+    color: #6A4F3D;
+  }
+  .latest-issue {
+    background-color: #EADAC4;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  .latest-issue img {
+    max-width: 200px;
+    margin-left: 2rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  .welcome {
+    background-color: #D4A390;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+  }
+  .about {
+    background-color: #EADAC4;
+    padding: 2rem;
+    border-radius: 8px;
+  }
+  #loginForm {
+    background-color: #EADAC4;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    max-width: 400px;
+    margin: 2rem auto;
+  }
+  #loginForm input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #8E6C56;
+    border-radius: 4px;
+  }
+  #loginForm button {
+    background-color: #8E6C56;
+    color: #F5E6D3;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  #loginForm button:hover {
+    background-color: #6A4F3D;
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>نشریه تسنیم</h1>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="#home">خانه</a></li>
+    <li><a href="#archive">آرشیو</a></li>
+    <li><a href="#about">درباره ما</a></li>
+    <li><a href="#contact">تماس با ما</a></li>
+    <li><a href="#login">ورود مدیر</a></li>
+  </ul>
+</nav>
+
+<main id="mainContent">
+  <section id="home">
+    <div class="latest-issue">
+      <img id="latestCover" alt="کاور آخرین شماره نشریه تسنیم" src="" width="200" height="280">
+      <div>
+        <h2 id="latestTitle">جدیدترین شماره</h2>
+        <p id="latestDescription"></p>
+        <button onclick="openLatestIssue()">مشاهده نشریه</button>
+      </div>
+    </div>
+    
+    <div class="welcome">
+      <h2>به نشریه تسنیم خوش آمدید</h2>
+      <p>نشریه تسنیم، پنجره‌ای به دنیای فرهنگ و هنر ایران زمین است. هر شماره، سفری است به عمق تاریخ و فرهنگ غنی ما.</p>
+    </div>
+    
+    <div class="about">
+      <h2>درباره نشریه تسنیم</h2>
+      <p>نشریه تسنیم با هدف معرفی و ترویج فرهنگ و هنر ایرانی، هر ماه مجموعه‌ای از مقالات، گزارش‌ها و مصاحبه‌های جذاب را به مخاطبان خود ارائه می‌دهد. ما به دنبال پل زدن میان گذشته و حال، و معرفی جلوه‌های مختلف فرهنگ ایرانی به نسل جدید هستیم.</p>
+    </div>
+  </section>
+</main>
+
+<div id="loginForm" style="display: none;">
+  <h2>ورود مدیر</h2>
+  <form onsubmit="return login(event)">
+    <input type="text" id="username" placeholder="نام کاربری" required>
+    <input type="password" id="password" placeholder="رمز عبور" required>
+    <button type="submit">ورود</button>
+  </form>
+</div>
+
+<script>
+function showLoginForm() {
+  document.getElementById('mainContent').style.display = 'none';
+  document.getElementById('loginForm').style.display = 'block';
+}
+
+function login(event) {
+  event.preventDefault();
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+  if (username === 'محیا' && password === '1234') {
+    window.location.href = 'admin.html';
+  } else {
+    alert('نام کاربری یا رمز عبور اشتباه است.');
+  }
+}
+
+function loadLatestIssue() {
+  const issues = JSON.parse(localStorage.getItem('issues')) || [];
+  if (issues.length > 0) {
+    const latestIssue = issues[0];
+    document.getElementById('latestCover').src = latestIssue.cover;
+    document.getElementById('latestTitle').textContent = `شماره ${latestIssue.number}: ${latestIssue.title}`;
+    document.getElementById('latestDescription').textContent = latestIssue.description;
+  }
+}
+
+function openLatestIssue() {
+  const issues = JSON.parse(localStorage.getItem('issues')) || [];
+  if (issues.length > 0) {
+    const latestIssue = issues[0];
+    const pdfWindow = window.open();
+    pdfWindow.document.write('<iframe width="100%" height="100%" src="' + latestIssue.pdf + '"></iframe>');
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  loadLatestIssue();
+  
+  const loginLink = document.querySelector('a[href="#login"]');
+  loginLink.addEventListener('click', function(e) {
+    e.preventDefault();
+    showLoginForm();
+  });
+});
+</script>
+</body>
+</html>
